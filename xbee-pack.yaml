@@ -1,0 +1,31 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+  The libarchive library provides a single interface for reading/writing various compression formats.    Installed Programs: ccmake, cmake, cmake-gui (optional), cpack, and ctest
+  Installed Programs: bsdcat, bsdcpio, and bsdtar
+  Installed Libraries: libarchive.so
+  Installed Directories: None
+  Short Descriptions
+    bsdcat: expands files to standard output
+    bsdcpio: is a tool similar to cpio
+    bsdtar: is a tool similar to GNU tar
+    libarchive.so: is a library that can create and read several streaming archive formats
+
+in:
+  version: "3.6.0"
+
+provision:
+  - url: 
+      from: https://github.com/libarchive/libarchive/releases/download/v{% version %}/libarchive-{% version %}.tar.xz
+      todir: "{% xbeeSrc %}"
+
+build:
+   - shell:
+      cmds:
+        - sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake
+        - ./bootstrap --prefix=/usr --system-libs --mandir=/share/man --no-system-jsoncpp --no-system-librhash --docdir=/share/doc/cmake-{% version %}
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/libuv-v{% version %}"
