@@ -28,4 +28,4 @@ build:
         - ./configure --prefix=/usr --disable-static
         - make
         - make install DESTDIR={% xbeeOut %}
-      directory: "{% xbeeSrc %}/libuv-v{% version %}"
+      directory: "{% xbeeSrc %}/libarchive-{% version %}"
