@@ -13,13 +13,11 @@ description: |
     bsdtar: is a tool similar to GNU tar
     libarchive.so: is a library that can create and read several streaming archive formats
 
-in:
-  version: "3.6.0"
+var:
+  version: 3.6.0
 
 provision:
-  - url: 
-      from: https://github.com/libarchive/libarchive/releases/download/v{% version %}/libarchive-{% version %}.tar.xz
-      todir: "{% xbeeSrc %}"
+  url: https://github.com/libarchive/libarchive/releases/download/v{{ .version }}/libarchive-{{ .version }}.tar.xz
 
 build:
    - shell:
@@ -27,5 +25,5 @@ build:
         - sed -i '436a if ((OSSL_PROVIDER_load(NULL, "legacy")) == NULL) return (ARCHIVE_FAILED);' libarchive/archive_digest.c
         - ./configure --prefix=/usr --disable-static
         - make
-        - make install DESTDIR={% xbeeOut %}
-      directory: "{% xbeeSrc %}/libarchive-{% version %}"
+        - make install DESTDIR={{ .xbee.out }}
+      directory: "{{ .xbee.src }}/libarchive-{{ .version }}"
