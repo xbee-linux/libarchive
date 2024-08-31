@@ -18,7 +18,7 @@ var:
     version: 3.6.0
 
 provision:
-  url: https://github.com/libarchive/libarchive/releases/download/v{{ .version }}/libarchive-{{ .version }}.tar.xz
+  url: https://github.com/libarchive/libarchive/releases/download/v{{ .xbee.version }}/libarchive-{{ .xbee.version }}.tar.xz
 
 build:
    - shell:
@@ -27,4 +27,4 @@ build:
         - ./configure --prefix=/usr --disable-static
         - make
         - make install DESTDIR={{ .xbee.out }}
-      directory: "{{ .xbee.src }}/libarchive-{{ .version }}"
+      directory: "{{ .xbee.src }}/libarchive-{{ .xbee.version }}"
