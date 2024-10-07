@@ -1,7 +1,5 @@
 schema-version: 1.0
 
-type: builder
-
 description: |
   The libarchive library provides a single interface for reading/writing various compression formats.    Installed Programs: ccmake, cmake, cmake-gui (optional), cpack, and ctest
   Installed Programs: bsdcat, bsdcpio, and bsdtar
